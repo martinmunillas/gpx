@@ -1,4 +1,4 @@
-package gpxparser
+package gpx
 
 import (
 	"encoding/xml"
@@ -22,10 +22,10 @@ type TrackSegment struct {
 }
 
 type TrackPoint struct {
-	XMLName xml.Name `xml:"trkpt"`
-	Lat     float64  `xml:"lat,attr" json:"lat"`
-	Lon     float64  `xml:"lon,attr" json:"lon"`
-	Ele     float64  `xml:"ele" json:"ele"`
+	XMLName   xml.Name `xml:"trkpt"`
+	Latitude  float64  `xml:"lat,attr" json:"lat"`
+	Longitude float64  `xml:"lon,attr" json:"lon"`
+	Elevation float64  `xml:"ele" json:"ele"`
 }
 
 func Parse(r io.Reader) (*GPX, error) {

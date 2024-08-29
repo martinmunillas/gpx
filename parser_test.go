@@ -1,4 +1,4 @@
-package gpxparser
+package gpx
 
 import (
 	"strings"
@@ -39,8 +39,8 @@ func TestParseValidGPX(t *testing.T) {
 	}
 
 	pt := gpx.Tracks[0].Segments[0].TrackPoints[0]
-	if pt.Lat != 45.0 || pt.Lon != 9.0 || pt.Ele != 100.0 {
-		t.Errorf("Expected track point (45.0, 9.0, 100.0), got (%v, %v, %v)", pt.Lat, pt.Lon, pt.Ele)
+	if pt.Latitude != 45.0 || pt.Longitude != 9.0 || pt.Elevation != 100.0 {
+		t.Errorf("Expected track point (45.0, 9.0, 100.0), got (%v, %v, %v)", pt.Latitude, pt.Longitude, pt.Elevation)
 	}
 }
 
@@ -105,7 +105,7 @@ func TestParseComplexGPX(t *testing.T) {
 	}
 
 	pt := gpx.Tracks[1].Segments[0].TrackPoints[0]
-	if pt.Lat != 47.0 || pt.Lon != 11.0 || pt.Ele != 300.0 {
-		t.Errorf("Expected track point (47.0, 11.0, 300.0), got (%v, %v, %v)", pt.Lat, pt.Lon, pt.Ele)
+	if pt.Latitude != 47.0 || pt.Longitude != 11.0 || pt.Elevation != 300.0 {
+		t.Errorf("Expected track point (47.0, 11.0, 300.0), got (%v, %v, %v)", pt.Latitude, pt.Longitude, pt.Elevation)
 	}
 }
