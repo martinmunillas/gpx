@@ -25,7 +25,7 @@ func (g GeoJSON) String() ([]byte, error) {
 	return json.Marshal(g)
 }
 
-func (gpx *GPX) ToGeoJSON() GeoJSON {
+func (gpx *GPX) ToGeoJSON() *GeoJSON {
 	geoJSON := GeoJSON{
 		Type:     "FeatureCollection",
 		Features: []Feature{},
@@ -53,5 +53,5 @@ func (gpx *GPX) ToGeoJSON() GeoJSON {
 		}
 	}
 
-	return geoJSON
+	return &geoJSON
 }
