@@ -9,6 +9,8 @@ import (
 type GPX struct {
 	XMLName xml.Name `xml:"gpx"`
 	Tracks  []Track  `xml:"trk" json:"tracks"`
+
+	computedDistances bool
 }
 
 type Track struct {
@@ -22,10 +24,12 @@ type TrackSegment struct {
 }
 
 type TrackPoint struct {
-	XMLName   xml.Name `xml:"trkpt"`
-	Latitude  float64  `xml:"lat,attr" json:"lat"`
-	Longitude float64  `xml:"lon,attr" json:"lon"`
-	Elevation float64  `xml:"ele" json:"ele"`
+	XMLName              xml.Name `xml:"trkpt"`
+	Latitude             float64  `xml:"lat,attr" json:"lat"`
+	Longitude            float64  `xml:"lon,attr" json:"lng"`
+	Elevation            float64  `xml:"ele" json:"elevation"`
+	RunningDistance      float64  `json:"runningDistance"`
+	DistanceWithPrevious float64  `json:"distanceWithPrevious"`
 }
 
 func Parse(r io.Reader) (*GPX, error) {

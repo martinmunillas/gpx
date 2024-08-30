@@ -1,6 +1,8 @@
 package gpx
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // GeoJSON represents the structure of a GeoJSON object.
 type GeoJSON struct {
