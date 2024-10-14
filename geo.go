@@ -11,6 +11,8 @@ func (gpx *GPX) WithDistances() *GPX {
 		return gpx
 	}
 	totalDistance := 0.0
+	totalClimb := 0.0
+	totalDescent := 0.0
 
 	for i, track := range gpx.Tracks {
 		for j, segment := range track.Segments {
@@ -27,9 +29,21 @@ func (gpx *GPX) WithDistances() *GPX {
 				gpx.Tracks[i].Segments[j].TrackPoints[k].DistanceWithPrevious = dist
 				totalDistance += dist
 				gpx.Tracks[i].Segments[j].TrackPoints[k].RunningDistance = totalDistance
+
+				elevationDiff := b.Elevation - a.Elevation
+				if elevationDiff > 0 {
+					totalClimb += elevationDiff
+				} else {
+					totalDescent -= elevationDiff
+				}
 			}
 		}
 	}
+
+	gpx.TotalDistanceMeters = uint64(totalDistance)
+	gpx.NetElevationMeters = int64(totalClimb - totalDescent)
+	gpx.TotalClimbMeters = uint64(totalClimb)
+	gpx.TotalDescentMeters = uint64(totalDescent)
 
 	return gpx
 }

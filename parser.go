@@ -7,8 +7,13 @@ import (
 )
 
 type GPX struct {
-	XMLName xml.Name `xml:"gpx"`
-	Tracks  []Track  `xml:"trk" json:"tracks"`
+	XMLName             xml.Name `xml:"gpx"`
+	Tracks              []Track  `xml:"trk" json:"tracks"`
+	TotalDistanceMeters uint64
+
+	TotalClimbMeters   uint64
+	TotalDescentMeters uint64
+	NetElevationMeters int64
 
 	computedDistances bool
 }
